@@ -37,41 +37,40 @@
                     </div>
 
                     <div class="modal-body">
-                       <form>
-                          
-                          <div id="first" class="form-group" style="display: none;">
-                            <label for="email">First Name:</label>
-                            <input id="email" type="text" class="form-control" name="email" placeholder="First Name">
-                          </div>
-                           
-                          <div id="last" class="form-group" style="display: none;">
-                            <label for="email">Last Name:</label>
-                            <input id="email" type="text" class="form-control" name="email" placeholder="Last Name">
-                          </div>
-                           
-                          <div class="form-group">
-                            <label for="email">Email address:</label>
-                            <input id="email" type="text" class="form-control" name="email" placeholder="someone@email.com">
-                          </div>
-                               <div class="form-group">
-                            <label for="pwd">Password:</label>
-                            <input type="password" class="form-control" id="pwd" placeholder=".......">
-                           </div>
-                           
-                          <div id="confirm" class="form-group" style="display: none;">
-                            <label for="pwd">Confirm Password:</label>
-                            <input type="password" class="form-control" id="pwd" placeholder=".......">
-                           </div>
-                           
-                          <button id="signin" type="submit" class="btn btn-primary">Sign In</button>
-                           
-                          <button id="tosubmit" type="submit" class="btn btn-primary" style="display: none;">Submit</button>
-                   
-                          <button id="register" class="btn btn-primary" onclick="register();">Register</button>
-                           
-                          <input name="gobacktosports" type="button" class="gobackcss" id="gobacktosports" value="Back" onclick="register();"/>
+                       <form class="form-control">
+                            <div id="firstName" class="form-group">
+                                <label for="firstName">First Name:</label>
+                                <input id="firstname" type="text" class="form-control" name="email" placeholder="First Name">
+                            </div>
 
-  
+                            <div id="lastName" class="form-group">
+                                <label for="lastName">Last Name:</label>
+                                <input id="lastname" type="text" class="form-control" name="email" placeholder="Last Name">
+                            </div>
+
+                            <div id="email" class="form-group">
+                                <label for="email">Email address:</label> <br />
+                                <input id="email" type="text" class="form-control" name="email" placeholder="someone@email.com">
+                            </div>
+
+                            <div id="password" class="form-group">
+                                <label for="pwd">Password:</label>
+                                <input type="password" class="form-control" id="pwd" placeholder=".......">
+                            </div>
+
+                            <div id="confirmPassword" class="form-group">
+                                <label for="pwd">Confirm Password:</label>
+                                <input type="password" class="form-control" id="pwd" placeholder=".......">
+                            </div>
+
+                            <button id="signin" type="submit" class="btn btn-primary">Sign In</button>
+
+                            <input type="button" id="register" class="btn btn-primary" value="Register"/>
+                           
+                           <input type="button" id="back" class="btn btn-primary" value="Back"/>
+                           
+                           <button id="submitSignup" type="submit" class="btn btn-primary">Submit</button>
+                           
                         </form>
                     </div>
 
@@ -136,10 +135,6 @@
             </div>
         </footer>
         
-
-        
-        
-        
         
         <!-- Jquery, Popper, Bootstrap JS Code -->
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -148,19 +143,6 @@
 
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         
-        <script>
-        function register()
-            {
-                alert("inside");
-                document.getElementById("signin").style.display= "none";
-		        document.getElementById("register").style.display= "none";
-                document.getElementById("submit").style.display= "none";
-		        document.getElementById("first").style.display= "";
-                document.getElementById("last").style.display= "";
-                document.getElementById("confirm").style.display= "";
-
-
-            }
-        </script>
+        <script src="js/login.js"></script>
     </body>
 </html>

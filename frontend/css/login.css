@@ -54,3 +54,8 @@
     border-bottom-color: #EEEEEE;
     background-color: #FAFAFA;
 }
+
+#submitSignup, #register {
+    position: absolute;
+    right: 30px;
+}
