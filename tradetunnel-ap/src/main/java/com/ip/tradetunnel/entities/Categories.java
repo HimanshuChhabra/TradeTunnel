@@ -1,11 +1,10 @@
 package com.ip.tradetunnel.entities;
 
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -15,12 +14,15 @@ public class Categories extends AbstractEntity {
 
 	private String categoryName;
 
-	@ManyToOne
-	@JoinColumn(name = "prod_id", nullable = false)
-	private Product product;
+	@OneToMany(mappedBy = "category")
+	private Set<Product> product;
 
 	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
 	private Set<SubCategories> subCategory;
+	
+	public Long getResourceID() {
+		return id;
+	}
 
 	public String getCategoryName() {
 		return categoryName;
@@ -30,19 +32,30 @@ public class Categories extends AbstractEntity {
 		this.categoryName = categoryName;
 	}
 
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-
 	public Set<SubCategories> getSubCategory() {
 		return subCategory;
 	}
 
 	public void setSubCategory(Set<SubCategories> subCategory) {
 		this.subCategory = subCategory;
+	}
+
+	public Set<Product> getProduct() {
+		return product;
+	}
+
+	public void setProduct(Set<Product> product) {
+		this.product = product;
+	}
+	
+
+	@Override
+	public boolean equals(Object obj) {
+		return Objects.equals(this.getId(), ((Categories) obj).getId());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(this.getId());
 	}
 }

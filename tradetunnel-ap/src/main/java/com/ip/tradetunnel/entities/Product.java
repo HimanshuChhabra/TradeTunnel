@@ -1,6 +1,7 @@
 package com.ip.tradetunnel.entities;
 
 import java.util.Date;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -23,7 +24,6 @@ public class Product extends AbstractEntity {
 	private String productName;
 	private String productDescription;
 	private float price;
-	private String country;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "create_date")
@@ -37,11 +37,16 @@ public class Product extends AbstractEntity {
 	@JoinColumn(name = "user_id", nullable = false)
 	private UserProfile userProfile;
 
+	@ManyToOne
+	@JoinColumn(name = "cat_id", nullable = false)
+	private Categories category;
+
+	@ManyToOne
+	@JoinColumn(name = "subcat_id", nullable = false)
+	private SubCategories subcategory;
+
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
 	private Set<Image> image;
-	
-	@OneToMany(mappedBy = "product")
-	private Set<Categories> categories;
 
 	public String getProductName() {
 		return productName;
@@ -99,20 +104,30 @@ public class Product extends AbstractEntity {
 		this.image = image;
 	}
 
-	public String getCountry() {
-		return country;
+	public Categories getCategory() {
+		return category;
 	}
 
-	public void setCountry(String country) {
-		this.country = country;
+	public void setCategory(Categories category) {
+		this.category = category;
 	}
 
-	public Set<Categories> getCategories() {
-		return categories;
+	public SubCategories getSubcategory() {
+		return subcategory;
 	}
 
-	public void setCategories(Set<Categories> categories) {
-		this.categories = categories;
+	public void setSubcategory(SubCategories subcategory) {
+		this.subcategory = subcategory;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return Objects.equals(this.getId(), ((Product) obj).getId());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(this.getId());
 	}
 
 }

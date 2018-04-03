@@ -1,5 +1,6 @@
 package com.ip.tradetunnel.entities;
 
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -92,6 +93,16 @@ public class UserProfile {
 
 	public void setPassWord(String passWord) {
 		this.passWord = passWord;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return Objects.equals(this.getId(), ((UserProfile) obj).getId());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(this.getId());
 	}
 
 }

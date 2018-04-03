@@ -1,5 +1,7 @@
 package com.ip.tradetunnel.entities;
 
+import java.util.Objects;
+
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -74,6 +76,16 @@ public class Address extends AbstractEntity {
 
 	public void setUserProfile(UserProfile user) {
 		this.userProfile = user;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return Objects.equals(this.getId(), ((Address) obj).getId());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(this.getId());
 	}
 
 }
