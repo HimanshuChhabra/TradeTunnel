@@ -1,0 +1,85 @@
+{
+    "products" : [
+        {
+            "productName" : "Study platform",
+            "productDescription" : "A wooden table with adequate height and weight to use it anywhere.",
+            "price" : 20,
+            "stat" : "unsold",
+            "userProfile" : "/userProfiles/3",
+            "category" : "categorieses/2",
+            "subcategory" : "subCategorieses/5"
+        },
+        {
+            "productName" : "iPhone",
+            "productDescription" : "Old iPhone up for sale, need some quick money for the college.",
+            "price" : 600,
+            "stat" : "sold",
+            "userProfile" : "/userProfiles/3",
+            "category" : "categorieses/2",
+            "subcategory" : "subCategorieses/5"
+        },
+        {
+            "productName" : "iMac Pro",
+            "productDescription" : "New & Boxed iMac Pro with Basic configuration, sold at lower price.",
+            "price" : 4599,
+            "stat" : "unsold",
+            "userProfile" : "/userProfiles/3",
+            "category" : "categorieses/2",
+            "subcategory" : "subCategorieses/5"
+        },
+        {
+            "productName" : "Blackboard",
+            "productDescription" : "Size of blackboard enough for 1 medium sized classroom.",
+            "price" : 90,
+            "stat" : "sold",
+            "userProfile" : "/userProfiles/3",
+            "category" : "categorieses/2",
+            "subcategory" : "subCategorieses/5"
+        },
+        {
+            "productName" : "Bagpack",
+            "productDescription" : "Traveller's bagpack, with a huge capacity for laptop, clothes and other stuff.",
+            "price" : 45,
+            "stat" : "unsold",
+            "userProfile" : "/userProfiles/3",
+            "category" : "categorieses/2",
+            "subcategory" : "subCategorieses/5"
+        },
+        {
+            "productName" : "Refrigerator",
+            "productDescription" : "1000W equipment for the kitchen, with capacity of 165L.",
+            "price" : 300,
+            "stat" : "sold",
+            "userProfile" : "/userProfiles/3",
+            "category" : "categorieses/2",
+            "subcategory" : "subCategorieses/5"
+        },
+        {
+            "productName" : "Chair",
+            "productDescription" : "Confortable chair with velvet feel cushion for backrest and sitting.",
+            "price" : 15,
+            "stat" : "unsold",
+            "userProfile" : "/userProfiles/3",
+            "category" : "categorieses/2",
+            "subcategory" : "subCategorieses/5"
+        },
+        {
+            "productName" : "Earphones",
+            "productDescription" : "Cheap and light earphone with 3.5mm Jack",
+            "price" : 5,
+            "stat" : "sold",
+            "userProfile" : "/userProfiles/3",
+            "category" : "categorieses/2",
+            "subcategory" : "subCategorieses/5"
+        },
+        {
+            "productName" : "Mouse",
+            "productDescription" : "Logitech Mouse with Bluetooth support.",
+            "price" : 25,
+            "stat" : "unsold",
+            "userProfile" : "/userProfiles/3",
+            "category" : "categorieses/2",
+            "subcategory" : "subCategorieses/5"
+        }
+    ]
+}
