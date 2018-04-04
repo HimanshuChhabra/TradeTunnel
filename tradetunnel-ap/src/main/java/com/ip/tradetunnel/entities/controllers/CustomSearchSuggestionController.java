@@ -1,9 +1,12 @@
 
 package com.ip.tradetunnel.entities.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.webmvc.PersistentEntityResource;
+import org.springframework.data.rest.webmvc.PersistentEntityResourceAssembler;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.ResponseEntity;
@@ -23,11 +26,20 @@ public class CustomSearchSuggestionController {
 	ProductRepository productRepo;
 
 	@GetMapping("/{word}")
-	public @ResponseBody ResponseEntity<?> getProductListByName(@PathVariable String word ) {
-		List<Product> productList = productRepo.findByProductNameLikeOrProductDescriptionLike("%"+word+"%","%"+word+"%");
-		//List<String> list = Arrays.asList("Hi","LP");
-		Resources<Product> resources = new Resources<Product>(productList);
-		//Resources<String> resources = new Resources<String>(list);
+	public @ResponseBody ResponseEntity<?> getProductListByName(@PathVariable String word,
+			PersistentEntityResourceAssembler assembler) {
+		List<Product> productList = productRepo.findByProductNameLikeOrProductDescriptionLike("%" + word + "%",
+				"%" + word + "%");
+		// List<String> list = Arrays.asList("Hi","LP");
+
+		List<PersistentEntityResource> halProds = new ArrayList<PersistentEntityResource>();
+		for (Product prod : productList) {
+			halProds.add(assembler.toResource(prod));
+		}
+		Resources<PersistentEntityResource> resources = new Resources<PersistentEntityResource>(halProds);
+		// Resources<Product> resources = new Resources<Product>(productList);
+		// Resources<String> resources = new Resources<String>(list);
+
 		return ResponseEntity.ok(resources);
 	}
 }
