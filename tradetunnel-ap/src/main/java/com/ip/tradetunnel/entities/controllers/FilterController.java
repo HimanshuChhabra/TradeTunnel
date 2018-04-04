@@ -1,4 +1,4 @@
-package com.ip.tradetunnel.entities.controllers.exceptions;
+package com.ip.tradetunnel.entities.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
