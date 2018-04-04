@@ -27,4 +27,15 @@
         $("#register").toggle();
         $("#myModalLabel").text("Login");
     });
+    
+    $(".close").click(function() {
+        $("#firstName").toggle();
+        $("#lastName").toggle();
+        $("#confirmPassword").toggle();
+        $("#submitSignup").toggle();
+        $("#back").toggle();
+        $("#signin").toggle();
+        $("#register").toggle();
+        $("#myModalLabel").text("Login");
+    });
 });
