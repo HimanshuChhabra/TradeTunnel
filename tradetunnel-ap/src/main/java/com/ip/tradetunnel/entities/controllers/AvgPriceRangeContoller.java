@@ -1,4 +1,4 @@
-package com.ip.tradetunnel.entities.controllers.exceptions;
+package com.ip.tradetunnel.entities.controllers;
 
 import java.util.Arrays;
 import java.util.List;
@@ -35,6 +35,7 @@ public class AvgPriceRangeContoller {
 	ProductRepository productRepo;
 	@Autowired
 	SubCategoriesRepository subcatrepo;
+
 
 	@GetMapping("/{subcategoryID}")
 	public @ResponseBody ResponseEntity<?> getAveragePrice(@PathVariable Long subcategoryID) {
