@@ -12,10 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ip.tradetunnel.entities.Categories;
 import com.ip.tradetunnel.entities.Product;
 import com.ip.tradetunnel.entities.SubCategories;
-import com.ip.tradetunnel.entities.repos.CategoriesRepository;
 import com.ip.tradetunnel.entities.repos.ProductRepository;
 import com.ip.tradetunnel.entities.repos.SubCategoriesRepository;
 
@@ -23,13 +21,6 @@ import com.ip.tradetunnel.entities.repos.SubCategoriesRepository;
 @RequestMapping("/average")
 public class AvgPriceRangeContoller {
 
-	public AvgPriceRangeContoller() {
-		/*
-		 * find product by category by FindByCategory For each product get the category,
-		 * get the subcategory if it matches , get the price of the product add the
-		 * price and later divide by the length or a counter
-		 */
-	}
 
 	@Autowired
 	ProductRepository productRepo;
