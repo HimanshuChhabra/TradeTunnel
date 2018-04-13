@@ -1,8 +1,14 @@
 
 package com.ip.tradetunnel.entities.controllers;
 
+/**
+ * Custom Search Contoller.
+ * 
+ * @author himanshu chhabra
+ */
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.PersistentEntityResource;
@@ -25,11 +31,18 @@ public class CustomSearchSuggestionController {
 	@Autowired
 	ProductRepository productRepo;
 
-	@GetMapping("/{word}")
-	public @ResponseBody ResponseEntity<?> getProductListByName(@PathVariable String word,
+	/*
+	 * Custom Search is enabled on product name OR product description
+	 * @arg word is searched in the Database, 
+	 * @arg userId is used to identify the user initiating the search. This avoids displaying the users products to itself
+	 */
+	@GetMapping("/{word}/{userid}")
+	public @ResponseBody ResponseEntity<?> getProductListByName(@PathVariable String word,@PathVariable String userid,
 			PersistentEntityResourceAssembler assembler) {
 		List<Product> productList = productRepo.findByProductNameLikeOrProductDescriptionLike("%" + word + "%",
 				"%" + word + "%");
+		
+		productList = productList.stream().filter(product -> product.getUserProfile().getId() != Integer.parseInt(userid)).collect(Collectors.toList());
 		// List<String> list = Arrays.asList("Hi","LP");
 
 		List<PersistentEntityResource> halProds = new ArrayList<PersistentEntityResource>();

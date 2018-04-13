@@ -1,9 +1,15 @@
 package com.ip.tradetunnel.entities.controllers;
-
+/**
+ * User Registration controller.
+ * 
+ * @author himanshu chhabra
+ */
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.PersistentEntityResource;
 import org.springframework.data.rest.webmvc.PersistentEntityResourceAssembler;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +19,11 @@ import com.ip.tradetunnel.entities.UserProfile;
 import com.ip.tradetunnel.entities.controllers.exceptions.MalFormedUserException;
 import com.ip.tradetunnel.entities.repos.UserProfileRepository;
 
+
+/*
+ * @UserPorfile is created in the relational Db and the persisted entity is returned as successful response.
+ * If the User profile already exists then the user object from the database is returned
+ */
 @RepositoryRestController
 @RequestMapping("/register")
 public class RegistrationController {
@@ -34,6 +45,7 @@ public class RegistrationController {
 			return ResponseEntity.ok(assembler.toResource(user));
 		}else {
 			throw new MalFormedUserException("Missing Manditory Fileds" );
+			//return new ResponseEntity("Missing Manditory Fileds", new HttpHeaders(),HttpStatus.BAD_REQUEST);
 		}
 	}
 }

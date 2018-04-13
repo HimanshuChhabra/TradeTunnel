@@ -1,5 +1,9 @@
 package com.ip.tradetunnel.entities.controllers;
-
+/**
+ * Persist Image controller 
+ * 1. Persists the image in the file system (Backup)
+ * 2. Persist the image as a Blob in the relational Database
+ */
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -8,12 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.PersistentEntityResource;
 import org.springframework.data.rest.webmvc.PersistentEntityResourceAssembler;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +22,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ip.tradetunnel.entities.Image;
 import com.ip.tradetunnel.entities.Product;
-import com.ip.tradetunnel.entities.enumerations.Status;
 import com.ip.tradetunnel.entities.repos.ImageRepository;
 import com.ip.tradetunnel.entities.repos.ProductRepository;
 
@@ -29,10 +29,16 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+/*
+ * Perists the given media multipart file into the databsae as a blob/
+ * @arg id is the product id to which the Image belongs.
+ */
+
 @RepositoryRestController
 @RequestMapping("/persistImage")
 public class PersistImageController {
 
+	// Should be part of the project structure.
 	private static String UPLOADED_FOLDER = "/Users/himanshuchhabra/Documents/testImages/";
 
 	@Autowired
@@ -68,7 +74,7 @@ public class PersistImageController {
 
 			byte[] bytes = file.getBytes();
 			Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
-			Files.write(path, bytes);
+			Files.write(path, bytes);			// bakcup in the upload folder.
 
 			Image image = new Image();
 			image.setData(bytes);

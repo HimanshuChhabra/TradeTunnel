@@ -5,6 +5,10 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 
+/*
+ * Customizable filter criteria.
+ * Design allows to add additional filter criteria.
+ */
 @ComponentScan
 public class FilterCriteria {
 
@@ -12,6 +16,7 @@ public class FilterCriteria {
 	private Set<String> subcategories;
 	@Autowired
 	private Price range;
+	private String city;
 
 	public Set<String> getCategories() {
 		return categories;
@@ -35,6 +40,14 @@ public class FilterCriteria {
 
 	public void setRange(Price range) {
 		this.range = range;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 
 }

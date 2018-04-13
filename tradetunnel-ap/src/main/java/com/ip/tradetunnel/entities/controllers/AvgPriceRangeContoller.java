@@ -1,5 +1,9 @@
 package com.ip.tradetunnel.entities.controllers;
 
+/**
+ * Average price controller for Specific Sub Category of products
+ * @author himanshu chhabra
+ */
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,16 +21,17 @@ import com.ip.tradetunnel.entities.SubCategories;
 import com.ip.tradetunnel.entities.repos.ProductRepository;
 import com.ip.tradetunnel.entities.repos.SubCategoriesRepository;
 
+/*
+ * Average price of all the products that belong to a subcategory is calculated and returned as floating point
+ */
 @RepositoryRestController
 @RequestMapping("/average")
 public class AvgPriceRangeContoller {
-
 
 	@Autowired
 	ProductRepository productRepo;
 	@Autowired
 	SubCategoriesRepository subcatrepo;
-
 
 	@GetMapping("/{subcategoryID}")
 	public @ResponseBody ResponseEntity<?> getAveragePrice(@PathVariable Long subcategoryID) {
@@ -35,16 +40,16 @@ public class AvgPriceRangeContoller {
 		SubCategories subcat = subcatrepo.findOne(subcategoryID);
 
 		List<Product> product = productRepo.findBySubcategory(subcat);
-		
-		for(Product prod : product) {
-			totalCost+=prod.getPrice();
+
+		for (Product prod : product) {
+			totalCost += prod.getPrice();
 		}
-		
-		averageCost = totalCost/product.size();
-		
-		 List<Float> list = Arrays.asList(averageCost);
+
+		averageCost = totalCost / product.size();
+
+		List<Float> list = Arrays.asList(averageCost);
 		Resources<Float> resources = new Resources<Float>(list);
-		
+
 		return ResponseEntity.ok(resources);
 	}
 

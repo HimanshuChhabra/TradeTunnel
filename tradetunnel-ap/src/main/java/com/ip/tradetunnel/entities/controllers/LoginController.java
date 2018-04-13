@@ -1,5 +1,11 @@
 package com.ip.tradetunnel.entities.controllers;
 
+/**
+ * User Login Controller
+ * @author himanshu chhabra
+ *
+ */
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +23,11 @@ import com.ip.tradetunnel.entities.controllers.exceptions.InvalidPasswordExcepti
 import com.ip.tradetunnel.entities.controllers.exceptions.UserNotFoundException;
 import com.ip.tradetunnel.entities.repos.UserProfileRepository;
 
+/*
+ * @username - username provided in the http request.
+ * @password - password provided in the http request.
+ * Returns Http Ok on a successful login or an appropriate exception is propagated with the message
+ */
 @RepositoryRestController
 @RequestMapping("/login")
 public class LoginController {
