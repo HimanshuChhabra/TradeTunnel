@@ -16,7 +16,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import com.ip.tradetunnel.entities.enumerations.Status;
+
+/**
+ * Product Entity class, using Spring ORM to map to the relational database system
+ */
 
 @Entity
 @Table(name = "Product")
@@ -27,6 +33,7 @@ public class Product extends AbstractEntity {
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "create_date")
+	@CreationTimestamp
 	private Date createDate;
 
 	@Enumerated(EnumType.STRING)
@@ -47,6 +54,10 @@ public class Product extends AbstractEntity {
 
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
 	private Set<Image> image;
+	
+	public Long getResourceID() {
+		return id;
+	}
 
 	public String getProductName() {
 		return productName;

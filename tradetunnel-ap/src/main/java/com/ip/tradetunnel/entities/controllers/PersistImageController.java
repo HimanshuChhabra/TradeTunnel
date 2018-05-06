@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.PersistentEntityResource;
 import org.springframework.data.rest.webmvc.PersistentEntityResourceAssembler;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,9 +24,6 @@ import com.ip.tradetunnel.entities.Product;
 import com.ip.tradetunnel.entities.repos.ImageRepository;
 import com.ip.tradetunnel.entities.repos.ProductRepository;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 /*
  * Perists the given media multipart file into the databsae as a blob/
@@ -38,17 +34,14 @@ import java.nio.file.Paths;
 @RequestMapping("/persistImage")
 public class PersistImageController {
 
-	// Should be part of the project structure.
-	private static String UPLOADED_FOLDER = "/Users/himanshuchhabra/Documents/testImages/";
-
 	@Autowired
-	ProductRepository prodRepo;
+	ProductRepository prodRepo;  
 
 	@Autowired
 	ImageRepository imageRepo;
 
 	@PostMapping("/single")
-	private ResponseEntity<PersistentEntityResource> updateProductStatus(@RequestParam("file") MultipartFile uploadfile,
+	private ResponseEntity<PersistentEntityResource> updateProductStatus(@RequestParam("file") MultipartFile[] uploadfile,
 			@RequestParam("prodId") Long id, PersistentEntityResourceAssembler assembler) {
 		Product product = prodRepo.findOne(id);
 
@@ -58,8 +51,6 @@ public class PersistImageController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 
-		//return new ResponseEntity("Successfully uploaded - " + uploadfile.getOriginalFilename(), new HttpHeaders(),
-		//		HttpStatus.OK);
 		return ResponseEntity.ok(assembler.toResource(product));
 
 	}
@@ -69,16 +60,14 @@ public class PersistImageController {
 		for (MultipartFile file : files) {
 
 			if (file.isEmpty()) {
-				continue; // next pls
+				continue; 
 			}
 
 			byte[] bytes = file.getBytes();
-			Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
-			Files.write(path, bytes);			// bakcup in the upload folder.
 
 			Image image = new Image();
 			image.setData(bytes);
-			image.setImageName(UPLOADED_FOLDER + file.getOriginalFilename());
+			image.setImageName(file.getOriginalFilename());
 			image.setProduct(prod);
 			imageRepo.save(image);
 			

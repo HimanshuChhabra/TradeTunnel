@@ -7,6 +7,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/**
+ * Address Entity class, using Spring ORM (hibernate) to map to the relational database
+ */
 @Entity
 @Table(name = "Address")
 public class Address extends AbstractEntity {
@@ -21,6 +24,10 @@ public class Address extends AbstractEntity {
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
 	private UserProfile userProfile;
+
+	public Long getResourceID() {
+		return id;
+	}
 
 	public String getStreetAddress1() {
 		return streetAddress1;
@@ -77,7 +84,7 @@ public class Address extends AbstractEntity {
 	public void setUserProfile(UserProfile user) {
 		this.userProfile = user;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		return Objects.equals(this.getId(), ((Address) obj).getId());

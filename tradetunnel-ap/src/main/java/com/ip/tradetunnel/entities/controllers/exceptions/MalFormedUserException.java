@@ -1,30 +1,32 @@
 package com.ip.tradetunnel.entities.controllers.exceptions;
 
+/**
+ * Custom Exception thrown during user registration , on missing manditory fields
+ * @author himanshuchhabra
+ *
+ */
 public class MalFormedUserException extends RuntimeException {
 
+	private static final long serialVersionUID = 1L;
+
 	public MalFormedUserException() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public MalFormedUserException(String message) {
 		super(message);
-		// TODO Auto-generated constructor stub
 	}
 
 	public MalFormedUserException(Throwable cause) {
 		super(cause);
-		// TODO Auto-generated constructor stub
 	}
 
 	public MalFormedUserException(String message, Throwable cause) {
 		super(message, cause);
-		// TODO Auto-generated constructor stub
 	}
 
 	public MalFormedUserException(String message, Throwable cause, boolean enableSuppression,
 			boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
-		// TODO Auto-generated constructor stub
 	}
 
 }

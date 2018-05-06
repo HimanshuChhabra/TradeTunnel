@@ -9,6 +9,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * SubCategories Entity class, using Spring ORM to map to the relational database system
+ */
+
 @Entity
 @Table(name = "Subcategories")
 public class SubCategories extends AbstractEntity {
@@ -21,6 +25,10 @@ public class SubCategories extends AbstractEntity {
 	@JoinColumn(name = "category_id", nullable = false)
 	private Categories category;
 
+	public Long getResourceID() {
+		return id;
+	}
+	
 	public String getSubcategoryName() {
 		return subcategoryName;
 	}

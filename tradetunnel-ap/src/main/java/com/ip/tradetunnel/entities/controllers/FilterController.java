@@ -6,7 +6,6 @@ package com.ip.tradetunnel.entities.controllers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +14,10 @@ import org.springframework.data.rest.webmvc.PersistentEntityResourceAssembler;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ip.tradetunnel.entities.Address;
@@ -37,7 +34,7 @@ import com.ip.tradetunnel.filters.FilterCriteria;
 import com.ip.tradetunnel.filters.Price;
 
 @RepositoryRestController
-@RequestMapping("/filter")
+@RequestMapping("/products/filter")
 
 public class FilterController {
 
@@ -60,6 +57,9 @@ public class FilterController {
 			"categories": [
         		"Electronics",
         		"Furniture"
+        		],
+        	"subcategories" :[
+        		"Laptop"
         		],
     		"range" : {
 				"from"  : 5.12,
@@ -88,15 +88,16 @@ public class FilterController {
 
 			if (criteria.getSubcategories() != null) {
 				Set<String> subcategories = criteria.getSubcategories();
+				List<Product> subList = new ArrayList<Product>();
 				for (String subCategory : subcategories) {
 					List<SubCategories> subcategoryNameList = subcatRepo.findBySubcategoryName(subCategory);
 					if (!subcategoryNameList.isEmpty()) {
 						for (SubCategories subcat : subcategoryNameList) {
-							List<Product> subList = prodRepo.findBySubcategory(subcat);
-							productList = merge(productList, subList);
+							 subList.addAll(prodRepo.findBySubcategory(subcat));
 						}
 					}
 				}
+				productList = merge(productList, subList);
 			}
 
 			if (criteria.getRange() != null) {

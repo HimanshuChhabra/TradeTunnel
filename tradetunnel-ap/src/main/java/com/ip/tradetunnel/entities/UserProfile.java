@@ -10,7 +10,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.ip.tradetunnel.entities.Address;
+
+/**
+ * UserProfile Entity class, using Spring ORM to map to the relational database system
+ */
 
 @Entity
 @Table(name = "Userprofile")
@@ -22,8 +29,11 @@ public class UserProfile {
 	private String firstName;
 	private String lastName;
 	private String emailId;
+	
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private String passWord;
 	private String phoneNumber;
+
 
 	@OneToMany(mappedBy = "userProfile", cascade = CascadeType.ALL)
 	private Set<Address> address;
@@ -31,6 +41,10 @@ public class UserProfile {
 	@OneToMany(mappedBy = "userProfile", cascade = CascadeType.ALL)
 	private Set<Product> product;
 
+	public Long getResourceID() {
+		return id;
+	}
+	
 	public Long getId() {
 		return id;
 	}

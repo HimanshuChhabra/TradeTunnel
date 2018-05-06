@@ -2,7 +2,6 @@ package com.ip.tradetunnel.entities.controllers;
 
 /**
  * Update Product status controller
- * @author himanshu chhabra
  */
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.PersistentEntityResource;

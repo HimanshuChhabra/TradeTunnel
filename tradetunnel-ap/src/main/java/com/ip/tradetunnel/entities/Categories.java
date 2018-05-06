@@ -8,6 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
+/**
+ * Categories Entity class, using Spring ORM to map to the relational database s
+ */
+
 @Entity
 @Table(name = "Categories")
 public class Categories extends AbstractEntity {
@@ -19,7 +24,7 @@ public class Categories extends AbstractEntity {
 
 	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
 	private Set<SubCategories> subCategory;
-	
+
 	public Long getResourceID() {
 		return id;
 	}
@@ -47,7 +52,6 @@ public class Categories extends AbstractEntity {
 	public void setProduct(Set<Product> product) {
 		this.product = product;
 	}
-	
 
 	@Override
 	public boolean equals(Object obj) {

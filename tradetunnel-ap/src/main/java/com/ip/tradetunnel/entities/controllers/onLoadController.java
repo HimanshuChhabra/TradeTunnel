@@ -1,11 +1,5 @@
-
 package com.ip.tradetunnel.entities.controllers;
 
-/**
- * Custom Search Contoller.
- * 
- * @author himanshu chhabra
- */
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,26 +19,18 @@ import com.ip.tradetunnel.entities.Product;
 import com.ip.tradetunnel.entities.repos.ProductRepository;
 
 @RepositoryRestController
-@RequestMapping("/search")
-public class CustomSearchSuggestionController {
+@RequestMapping("/load")
+public class onLoadController {
 
 	@Autowired
 	ProductRepository productRepo;
 
-	/*
-	 * Custom Search is enabled on product name OR product description
-	 * 
-	 * @arg word is searched in the Database,
-	 * 
-	 * @arg userId is used to identify the user initiating the search. This avoids
-	 * displaying the users products to itself
-	 */
-	@GetMapping("/{word}/{userid}")
-	public @ResponseBody ResponseEntity<?> getProductListByName(@PathVariable String word, @PathVariable String userid,
+	@GetMapping("/{userid}")
+	public @ResponseBody ResponseEntity<?> getProductListOnLoad(@PathVariable String userid,
 			PersistentEntityResourceAssembler assembler) {
-		
-		List<Product> productList = productRepo.findByProductNameLikeOrProductDescriptionLike("%" + word + "%",
-				"%" + word + "%");
+
+		List<Product> productList = (List<Product>) productRepo.findAll();
+
 		productList = productList.stream()
 				.filter(product -> product.getUserProfile().getId() != Integer.parseInt(userid))
 				.collect(Collectors.toList());
@@ -57,4 +43,5 @@ public class CustomSearchSuggestionController {
 
 		return ResponseEntity.ok(resources);
 	}
+
 }

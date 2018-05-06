@@ -6,10 +6,14 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/**
+ * Image Entity class, using Spring ORM to map to the relational database system
+ */
+
 @Entity
 @Table(name = "Image")
 public class Image extends AbstractEntity {
-	
+
 	private String imageName;
 	@Lob
 	private byte[] imageData;
@@ -17,6 +21,10 @@ public class Image extends AbstractEntity {
 	@ManyToOne
 	@JoinColumn(name = "prod_id", nullable = false)
 	private Product product;
+
+	public Long getResourceID() {
+		return id;
+	}
 
 	public String getImageName() {
 		return imageName;
