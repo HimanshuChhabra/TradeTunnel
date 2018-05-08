@@ -20,6 +20,8 @@ import com.ip.tradetunnel.entities.repos.UserProfileRepository;
 import com.ip.tradetunnel.recovery.AccountRecovery;
 
 import java.util.Properties;
+
+import javax.mail.Address;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -55,6 +57,7 @@ public class SendEmailController {
 			}
 			else {
 				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
 			}
 
 		} else {
@@ -64,7 +67,7 @@ public class SendEmailController {
 	}
 
 	private boolean sendEmail(String to) {
-
+		to = to.trim();
 		final String username = "ipproject2018@gmail.com";
 		final String password = "Jaimatadi123";
 
@@ -89,15 +92,16 @@ public class SendEmailController {
 					InternetAddress.parse(to));
 			message.setSubject("Reset Password for TradeTunnel");
 			message.setText("Hello, You have received this mail for resetting your password for Trade tunnel website. \nFollow the link to reset the password - http://localhost:8080/main/frontend/resetPassword.html");
-
+			System.out.println("before sending");
+			message.saveChanges();
 			Transport.send(message);
-
 			return true;
 
 		} 
 
 		catch (MessagingException e) 
 		{
+			System.out.println(e.getStackTrace());			
 			return false;
 		}
 	}

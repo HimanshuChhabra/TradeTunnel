@@ -2,11 +2,11 @@
 start transaction;
 
 drop database  if exists TradeTunnel;
-/*Creating database HealthCare*/
+/*Creating database */
 create database TradeTunnel;
 
 
-/*Use Database HaelthCare*/
+/*Use Database */
 use TradeTunnel;
  
  
@@ -85,7 +85,7 @@ drop table  if exists Image;
 create table Image(
 id 							int 					Not Null AUTO_INCREMENT,
 image_name 			varchar(150)	Not Null,
-image_data 			blob,
+image_data 			LONGBLOB,
 prod_id 					int					 Not Null,
 primary key(id), 
 foreign key (prod_id) references Product(id) ON DELETE CASCADE

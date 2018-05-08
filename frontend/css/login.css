@@ -1,13 +1,9 @@
-html,body {
-    width: 100%;
-    height: 100%;
-}
-
 .carousel-item img {
   height: 62vh;
   min-height: 400px;
 
   background: no-repeat center center scroll;
+    
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -17,7 +13,7 @@ html,body {
 .modal.right .modal-dialog {
 		position: fixed;
 		margin: auto;
-		width: 600px;
+		width: 500px;
 		height: 100%;
 		-webkit-transform: translate3d(0%, 0, 0);
 		    -ms-transform: translate3d(0%, 0, 0);
@@ -74,25 +70,28 @@ html,body {
     margin: 20px;
 }
 
-ul {
-    text-align: center;
-}
-
-ul li {
-    display: inline-block;
-    padding-left: 40px;
-    padding-right: 40px;
-}
-
-ul a {
-    text-decoration: none;
-    color: white;  
-}
-
-ul a:hover {
-    color: aqua;
-}
-
 #header {
-    padding-top: 100px;
+    padding-top: 20px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.information {
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+label.valid {
+	width: 12px;
+	height: 12px;
+	background: url(assets/img/valid.png) center center no-repeat;
+	display: inline-block;
+	text-indent: -9999px;
+}
+label.error {
+	color: red;
+    height: 10px;
+	padding: 2px 4px;
+	margin-top: 2px;
+    font-size: 12px;
 }
